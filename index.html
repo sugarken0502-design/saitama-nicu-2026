@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第20回 埼玉県新生児医療懇話会</title>
+  <style>
+    :root {
+      --primary: #1aa8d4;
+      --primary-dark: #0d7fa3;
+      --accent-orange: #ff8c42;
+      --accent-green: #43c97e;
+      --accent-pink: #f06292;
+      --bg-light: #fffbf5;
+      --text: #333;
+      --border: #fde4c8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+      background: var(--bg-light);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ======= HEADER ======= */
+    header {
+      background: linear-gradient(135deg, #ff8a50 0%, #ffbb6b 40%, #1aa8d4 100%);
+      color: #fff;
+      padding: 36px 20px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50px; right: -50px;
+      width: 180px; height: 180px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -70px; left: -30px;
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,0.10);
+      border-radius: 50%;
+    }
+    .header-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 20px;
+      padding: 4px 16px;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    header h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .header-sub {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-top: 8px;
+    }
+    .header-info {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .header-info-item {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+    }
+    .header-info-item strong {
+      display: block;
+      font-size: 1.05rem;
+    }
+
+    /* ======= TABS ======= */
+    .tab-nav {
+      background: #fff;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .tab-nav::-webkit-scrollbar { height: 3px; }
+    .tab-nav::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
+
+    .tab-btn {
+      flex: none;
+      padding: 14px 20px;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #666;
+      white-space: nowrap;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .tab-btn:hover { color: var(--accent-orange); background: #fff5ee; }
+    .tab-btn.active {
+      color: var(--accent-orange);
+      border-bottom-color: var(--accent-orange);
+      background: #fff5ee;
+    }
+    .tab-btn.preparing {
+      color: #aaa;
+    }
+
+    /* ======= CONTENT ======= */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #c05a00;
+      border-left: 5px solid var(--accent-orange);
+      padding-left: 12px;
+      margin-bottom: 24px;
+    }
+
+    /* ======= CARD ======= */
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(255,140,66,0.08);
+    }
+
+    /* ======= TAB1: 開催概要 ======= */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 12px 20px;
+      font-size: 0.97rem;
+    }
+    .info-grid dt {
+      font-weight: 700;
+      color: var(--accent-orange);
+      padding-top: 2px;
+    }
+    .info-grid dd { padding-top: 2px; }
+
+    .sponsor-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .sponsor-tag {
+      background: #fff3e8;
+      border: 1px solid #ffcda0;
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 0.85rem;
+      color: #b05800;
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.93rem;
+      margin-top: 8px;
+    }
+    .schedule-table th, .schedule-table td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .schedule-table th {
+      background: var(--accent-orange);
+      color: #fff;
+      font-weight: 600;
+      width: 120px;
+    }
+    .schedule-table tr:nth-child(even) td { background: #fff9f4; }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .tag {
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .tag-blue { background: #dbeeff; color: #1a5a9f; }
+    .tag-orange { background: #fff0d6; color: #a06000; }
+    .tag-green { background: #d8f5de; color: #2d7a3a; }
+    .tag-pink { background: #fde8ee; color: #b5134a; }
+
+    .alert-box {
+      background: #fff8e6;
+      border: 1px solid #f5c842;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-top: 20px;
+      font-size: 0.93rem;
+    }
+    .alert-box strong { color: #a06000; }
+
+    /* ======= TAB2: セミナー ======= */
+    .seminar-card {
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .seminar-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 24px;
+      color: #fff;
+    }
+    .seminar-header.s1 { background: linear-gradient(90deg, #1aa8d4, #0d7fa3); }
+    .seminar-header.s2 { background: linear-gradient(90deg, #43c97e, #2da060); }
+    .seminar-num {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .seminar-header h3 { font-size: 1.05rem; font-weight: 700; line-height: 1.4; }
+    .seminar-body {
+      background: #fff;
+      padding: 20px 24px;
+    }
+    .seminar-label {
+      display: inline-block;
+      background: #fff0d6;
+      color: #a06000;
+      border: 1px solid #f5c842;
+      border-radius: 6px;
+      padding: 2px 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .seminar-label.green { background: #d8f5de; color: #2d7a3a; border-color: #7acc82; }
+    .speaker-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .speaker-icon {
+      width: 44px; height: 44px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .speaker-icon.green { background: var(--accent-green); }
+    .speaker-info .name { font-weight: 700; font-size: 1.05rem; }
+    .speaker-info .affil { font-size: 0.88rem; color: #666; }
+    .sponsor-note {
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: #888;
+      text-align: right;
+    }
+    .seminar-desc {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: #f0faff;
+      border-left: 4px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.93rem;
+    }
+
+    /* ======= TAB3: 特別企画 ======= */
+    .special-hero {
+      background: linear-gradient(135deg, #e75480 0%, #c0105a 100%);
+      color: #fff;
+      border-radius: 14px;
+      padding: 30px 28px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .special-hero .label {
+      display: inline-block;
+      background: rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 20px;
+      padding: 3px 14px;
+      font-size: 0.83rem;
+      margin-bottom: 12px;
+    }
+    .special-hero h2 {
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: 700;
+      line-height: 1.5;
+    }
+    .special-hero .sponsor-note {
+      color: rgba(255,255,255,0.8);
+      margin-top: 12px;
+      font-size: 0.85rem;
+    }
+    .special-time {
+      background: rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 8px 20px;
+      display: inline-block;
+      margin-top: 14px;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .booth-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .booth-item {
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 18px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    .booth-item .booth-icon {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+    .booth-item h4 {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+    .booth-item p { font-size: 0.88rem; color: #555; }
+
+    .exhibit-list {
+      list-style: none;
+      padding: 0;
+    }
+    .exhibit-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 0.93rem;
+    }
+    .exhibit-list li:last-child { border-bottom: none; }
+    .exhibit-list li::before {
+      content: '▸';
+      color: var(--accent-pink);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .notice-box {
+      background: #fef6f9;
+      border: 1px solid #f5c0d4;
+      border-radius: 10px;
+      padding: 18px 20px;
+      font-size: 0.9rem;
+    }
+    .notice-box h4 { color: var(--accent-pink); margin-bottom: 10px; font-size: 0.97rem; }
+
+    /* ======= TAB4: 演題登録 ======= */
+    .step-list { list-style: none; counter-reset: steps; }
+    .step-list li {
+      counter-increment: steps;
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 36px; height: 36px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .step-body { flex: 1; }
+    .step-body h4 { font-weight: 700; margin-bottom: 4px; }
+    .step-body p { font-size: 0.92rem; color: #555; }
+
+    .deadline-banner {
+      background: linear-gradient(90deg, #f5a623, #e08010);
+      color: #fff;
+      border-radius: 10px;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .deadline-banner .icon { font-size: 1.8rem; }
+    .deadline-banner .text strong { font-size: 1.1rem; display: block; }
+    .deadline-banner .text span { font-size: 0.88rem; opacity: 0.9; }
+
+    .genre-grid {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;
+    }
+
+    /* ======= TAB5: 参加登録 ======= */
+    .reg-hero {
+      background: linear-gradient(135deg, #1aa8d4 0%, #0d7fa3 100%);
+      color: #fff;
+      border-radius: 14px;
+      padding: 30px 28px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .reg-hero h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+    .reg-hero p { font-size: 0.93rem; opacity: 0.9; margin-bottom: 20px; }
+    .reg-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--primary-dark);
+      border-radius: 30px;
+      padding: 14px 40px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .reg-btn:hover { background: #eef4ff; transform: translateY(-2px); }
+
+    .fee-card {
+      background: #fff;
+      border: 2px solid var(--accent-orange);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+    .fee-card h3 { color: #c05a00; margin-bottom: 12px; font-size: 1rem; }
+    .fee-amount {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+    }
+    .fee-amount span { font-size: 1rem; color: #555; font-weight: 400; }
+
+    .paypay-badge {
+      display: inline-block;
+      background: #ff0033;
+      color: #fff;
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    .party-card {
+      background: linear-gradient(135deg, #f9f0ff, #ede0ff);
+      border: 1px solid #c9a9e0;
+      border-radius: 12px;
+      padding: 20px 24px;
+    }
+    .party-card h3 { color: #6a0dad; margin-bottom: 12px; }
+    .party-card dl { font-size: 0.93rem; }
+    .party-card dt { font-weight: 700; color: #6a0dad; }
+    .party-card dd { margin-bottom: 8px; }
+
+    /* ======= TAB6: 準備中 ======= */
+    .preparing-screen {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .preparing-screen .icon { font-size: 4rem; margin-bottom: 16px; }
+    .preparing-screen h2 { font-size: 1.3rem; color: #888; margin-bottom: 10px; }
+    .preparing-screen p { font-size: 0.93rem; color: #aaa; }
+
+    /* ======= FOOTER ======= */
+    footer {
+      background: linear-gradient(135deg, #ff8a50 0%, #ffbb6b 40%, #1aa8d4 100%);
+      color: rgba(255,255,255,0.95);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 0.85rem;
+    }
+    footer a { color: #fff; text-decoration: underline dotted; }
+    footer a:hover { opacity: 0.8; }
+    footer .org { margin-bottom: 6px; font-size: 0.9rem; color: #fff; font-weight: 700; }
+
+    /* ======= RESPONSIVE ======= */
+    @media (max-width: 600px) {
+      .header-info { gap: 12px; }
+      .header-info-item { padding: 8px 14px; font-size: 0.88rem; }
+      .container { padding: 24px 14px 48px; }
+      .card { padding: 18px; }
+      .info-grid { grid-template-columns: 90px 1fr; }
+      .seminar-header { padding: 14px 16px; }
+      .seminar-body { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-badge">第 20 回</div>
+  <h1>埼玉県新生児医療懇話会</h1>
+  <div class="header-sub">当番世話人：自治医科大学附属さいたま医療センター</div>
+  <div class="header-info">
+    <div class="header-info-item">
+      <strong>2026年6月27日（土）</strong>
+      13:00 〜 17:00
+    </div>
+    <div class="header-info-item">
+      <strong>大宮ソニックシティ</strong>
+      6F 602号室
+    </div>
+    <div class="header-info-item">
+      <strong>参加費 500円</strong>
+      当日集金
+    </div>
+  </div>
+</header>
+
+<!-- TAB NAV -->
+<nav class="tab-nav" role="tablist">
+  <button class="tab-btn active" onclick="switchTab(event, 'overview')" role="tab">開催概要</button>
+  <button class="tab-btn" onclick="switchTab(event, 'seminar')" role="tab">セミナー</button>
+  <button class="tab-btn" onclick="switchTab(event, 'special')" role="tab">特別企画</button>
+  <button class="tab-btn" onclick="switchTab(event, 'abstract')" role="tab">演題登録</button>
+  <button class="tab-btn" onclick="switchTab(event, 'registration')" role="tab">参加登録</button>
+  <button class="tab-btn preparing" onclick="switchTab(event, 'presenters')" role="tab">一般演題発表者の方へ（準備中）</button>
+</nav>
+
+<!-- ===== TAB1: 開催概要 ===== -->
+<div id="overview" class="tab-content active">
+  <div class="container">
+    <h2 class="section-title">開催概要</h2>
+
+    <div class="card">
+      <dl class="info-grid">
+        <dt>日時</dt>
+        <dd>2026年6月27日（土）　13:00 〜 17:00</dd>
+        <dt>会場</dt>
+        <dd>大宮ソニックシティ　6F 602号室<br>
+            <small style="color:#777;">〒330-8669　埼玉県さいたま市大宮区桜木町1丁目7-5</small></dd>
+        <dt>参加費</dt>
+        <dd>500円（当日集金　PayPay歓迎）</dd>
+        <dt>当番世話人</dt>
+        <dd>自治医科大学附属さいたま医療センター</dd>
+        <dt>共催企業</dt>
+        <dd>
+          <div class="sponsor-row">
+            <span class="sponsor-tag">アトムメディカル株式会社</span>
+            <span class="sponsor-tag">BioMarin Pharmaceutical Japan 株式会社</span>
+          </div>
+        </dd>
+        <dt>事務局</dt>
+        <dd>自治医科大学附属さいたま医療センター 周産期科新生児部門</dd>
+        <dt>お問い合わせ</dt>
+        <dd><a href="mailto:nicu.jichis@gmail.com">nicu.jichis@gmail.com</a></dd>
+      </dl>
+    </div>
+
+    <h2 class="section-title">タイムスケジュール（予定）</h2>
+    <div class="card" style="padding:0; overflow:hidden;">
+      <table class="schedule-table">
+        <tr><th>13:00</th><td>開会・一般演題（予定8演題）</td></tr>
+        <tr><th>〜15:00頃</th><td>共催セミナー①<br>【スイーツセミナー】軟骨無形成症の早期診断と治療介入の意義について</td></tr>
+        <tr><th>〜16:00頃</th><td>セミナー②<br>明日からのケアがちょっと変わる？！家族のホンネ</td></tr>
+        <tr><th>16:05〜16:55</th><td><strong>特別企画</strong>　「見て・語って・持ち帰る NICUケア実践交流ラボ」</td></tr>
+        <tr><th>17:00</th><td>閉会</td></tr>
+        <tr><th>18:00〜</th><td>懇親会　KICHIRI（会場近く）</td></tr>
+      </table>
+    </div>
+
+    <h2 class="section-title" style="margin-top:32px;">一般演題　募集中！</h2>
+    <div class="card">
+      <p>新生児医療に関連する幅広い演題を募集しています。<br>
+         医師・看護師・理学療法士・言語療法士・作業療法士・臨床工学士など、<strong>多職種からのご応募</strong>をお待ちしております！</p>
+      <div class="tag-list">
+        <span class="tag tag-blue">症例検討</span>
+        <span class="tag tag-orange">看護ケア報告</span>
+        <span class="tag tag-green">人工呼吸管理</span>
+        <span class="tag tag-pink">理学療法</span>
+        <span class="tag tag-blue">多職種参加歓迎</span>
+      </div>
+      <div class="alert-box" style="margin-top:20px;">
+        <strong>演題申込・抄録提出先：</strong>
+        <a href="mailto:nicu.jichis@gmail.com">nicu.jichis@gmail.com</a><br>
+        <strong>締め切り：</strong>2026年5月27日（月）※延長予定　|　抄録600字以内、PDF または Word
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB2: セミナー ===== -->
+<div id="seminar" class="tab-content">
+  <div class="container">
+    <h2 class="section-title">セミナー</h2>
+
+    <!-- Seminar 1 -->
+    <div class="seminar-card">
+      <div class="seminar-header s1">
+        <div class="seminar-num">1</div>
+        <div>
+          <h3>軟骨無形成症の早期診断と治療介入の意義について</h3>
+        </div>
+      </div>
+      <div class="seminar-body">
+        <span class="seminar-label">共催スイーツセミナー</span>
+        <div class="speaker-row">
+          <div class="speaker-icon">&#128104;&#8205;&#9877;&#65039;</div>
+          <div class="speaker-info">
+            <div class="name">松本 志郎 先生</div>
+            <div class="affil">熊本大学小児科　特任教授</div>
+          </div>
+        </div>
+        <div class="seminar-desc">
+          軟骨無形成症（ACH）は最も頻度の高い骨系統疾患のひとつです。
+          近年、早期診断および早期治療介入の重要性が明らかになっています。
+          本セミナーでは、新生児期における軟骨無形成症の診断ポイントと、
+          最新の治療介入についてご講演いただきます。
+        </div>
+        <div class="sponsor-note">協賛：BioMarin Pharmaceutical Japan 株式会社</div>
+      </div>
+    </div>
+
+    <!-- Seminar 2 -->
+    <div class="seminar-card">
+      <div class="seminar-header s2">
+        <div class="seminar-num">2</div>
+        <div>
+          <h3>明日からのケアがちょっと変わる？！家族のホンネ</h3>
+        </div>
+      </div>
+      <div class="seminar-body">
+        <span class="seminar-label green">講演</span>
+        <div class="speaker-row">
+          <div class="speaker-icon green">&#128149;</div>
+          <div class="speaker-info">
+            <div class="name">林 英美子 様</div>
+            <div class="affil">一般社団法人 未熟児家族支援がんばりっこ　代表</div>
+          </div>
+        </div>
+        <div class="seminar-desc" style="border-left-color: var(--accent-green);">
+          NICUに子どもが入院する家族の立場から、医療スタッフへのリアルな声をお届けします。
+          ご家族が感じていること・望んでいること——
+          この講演がきっかけで、明日からのケアが少しだけ変わるかもしれません。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB3: 特別企画 ===== -->
+<div id="special" class="tab-content">
+  <div class="container">
+    <div class="special-hero">
+      <span class="label">特別企画</span>
+      <h2>「見て・語って・持ち帰る<br>NICUケア実践交流ラボ」</h2>
+      <div class="special-time">16:05 〜 16:55</div>
+      <div class="sponsor-note">協賛：アトムメディカル株式会社</div>
+    </div>
+
+    <h2 class="section-title">企画の目的</h2>
+    <div class="card">
+      <p>県内各施設のNICU・GCUで行われているケアの工夫やファミリーセンタードケアの実践を共有し、施設間で学び合う場を目指します。</p>
+      <p style="margin-top:12px;">参加された医師・看護師・理学療法士・臨床工学技士など多職種の皆さまが、<strong>「明日から少しケアを変えてみよう」</strong>と思えるような温かい企画にしたいと考えています。</p>
+    </div>
+
+    <h2 class="section-title">ブース構成（予定）</h2>
+    <div class="booth-grid">
+      <div class="booth-item">
+        <div class="booth-icon">&#128247;</div>
+        <h4>写真展</h4>
+        <p>各NICUのケア自慢・FCCの工夫・ディベロップメンタルケアの実践などを展示</p>
+      </div>
+      <div class="booth-item">
+        <div class="booth-icon">&#128149;</div>
+        <h4>家族会展示</h4>
+        <p>未熟児家族支援団体「がんばりっこ」による活動紹介</p>
+      </div>
+      <div class="booth-item">
+        <div class="booth-icon">&#129483;</div>
+        <h4>ミニカンファレンス</h4>
+        <p>カンガルーケア & ディベロップメンタルケアについて語り合う場</p>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top:32px;">写真展　出展内容（例）</h2>
+    <div class="card">
+      <ul class="exhibit-list">
+        <li>発達ケア：ポジショニング、環境調整、光・音への配慮</li>
+        <li>ファミリーセンタードケア：面会支援、育児参加、きょうだい支援</li>
+        <li>カンガルーケア：導入時の工夫、安全管理、家族説明</li>
+        <li>退院支援：育児手技指導、地域連携、在宅移行支援</li>
+        <li>スタッフ教育：カンファレンス、チェックリスト、勉強会</li>
+        <li>ご家族に寄り添うための施設独自の取り組み</li>
+      </ul>
+      <p style="margin-top:14px; font-size:0.92rem; color:#555;">展示形式は各施設につき<strong>A3 1枚程度のポスター</strong>、または写真数枚と簡単な説明文を想定しています。立派な取り組みである必要はなく、日々のケアの中で「これは大切にしている」と思われるもので十分です。</p>
+    </div>
+
+    <h2 class="section-title">個人情報保護について</h2>
+    <div class="notice-box">
+      <h4>写真提出時のお願い</h4>
+      <ul style="padding-left:18px; font-size:0.91rem; line-height:1.9;">
+        <li>原則として、<strong>個人が特定されない写真</strong>（環境写真・物品写真・スタッフによる再現写真など）を推奨</li>
+        <li>赤ちゃんやご家族が写る場合は、各施設の基準に従って<strong>同意取得</strong>をお願いします</li>
+        <li>ネームバンド・ベッドネーム・モニター画面・電子カルテ画面など、<strong>個人情報が写り込まないよう</strong>ご確認ください</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:20px; font-size:0.92rem; color:#555;">
+      出展を希望される施設は、まずは出展の可否のみ <a href="mailto:nicu.jichis@gmail.com">nicu.jichis@gmail.com</a> までご連絡ください。詳細な提出方法・締切・ポスターフォーマット等は改めてご案内いたします。
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB4: 演題登録 ===== -->
+<div id="abstract" class="tab-content">
+  <div class="container">
+    <h2 class="section-title">演題登録</h2>
+
+    <div class="deadline-banner">
+      <div class="icon">&#128197;</div>
+      <div class="text">
+        <strong>抄録締め切り：2026年5月27日（月）</strong>
+        <span>※連絡が遅くなりましたため、締切は延長予定です。まずは発表意思のご連絡だけでも歓迎します！</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:16px; color:var(--primary-dark);">募集演題ジャンル</h3>
+      <div class="genre-grid">
+        <span class="tag tag-blue">症例検討</span>
+        <span class="tag tag-orange">看護ケア報告</span>
+        <span class="tag tag-green">人工呼吸管理</span>
+        <span class="tag tag-pink">理学療法</span>
+        <span class="tag tag-blue">感染対策</span>
+        <span class="tag tag-orange">退院支援</span>
+        <span class="tag tag-green">ファミリーセンタードケア</span>
+        <span class="tag tag-pink">その他 新生児医療全般</span>
+      </div>
+      <p style="margin-top:16px; font-size:0.92rem; color:#555;">
+        医師・看護師・理学療法士・言語療法士・作業療法士・臨床工学士など、<strong>多職種からのご応募</strong>をお待ちしています（約8演題を予定）。苦労した症例や日々の取り組みなど、みんなで議論して学び合いましょう！
+      </p>
+    </div>
+
+    <h2 class="section-title" style="margin-top:32px;">応募方法</h2>
+    <div class="card">
+      <ol class="step-list">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>抄録を作成する</h4>
+            <p>600字以内で抄録を作成してください（書式は自由）。</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>ファイルを準備する</h4>
+            <p>抄録ファイルは <strong>PDF または Word形式</strong>でご用意ください。</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>メールで送付する</h4>
+            <p>抄録ファイルを添付して下記アドレスへ送付してください。<br>
+               件名に「演題申込：施設名・演者名」とご記載ください。</p>
+          </div>
+        </li>
+      </ol>
+
+      <div style="text-align:center; margin-top:10px;">
+        <a href="mailto:nicu.jichis@gmail.com?subject=演題申込" style="display:inline-block; background:var(--primary); color:#fff; border-radius:8px; padding:12px 32px; font-weight:700; text-decoration:none; font-size:1rem;">
+          nicu.jichis@gmail.com へ送る
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB5: 参加登録 ===== -->
+<div id="registration" class="tab-content">
+  <div class="container">
+    <div class="reg-hero">
+      <h2>事前参加登録（締め切り 2026年5月27日）</h2>
+      <p>医師・看護師・理学療法士・MEなど、多職種の参加を歓迎します。<br>
+         スイーツセミナーがありますので、事前登録にご協力をよろしくお願いします。</p>
+      <a href="https://forms.gle/1q13GPVaMwnu7ydF8" target="_blank" rel="noopener" class="reg-btn">
+        Googleフォームで登録する
+      </a>
+      <div style="margin-top:12px; font-size:0.82rem; opacity:0.8;">
+        https://forms.gle/1q13GPVaMwnu7ydF8
+      </div>
+    </div>
+
+    <div class="fee-card">
+      <h3>参加費</h3>
+      <div class="fee-amount">500円<span> / 人</span></div>
+      <p style="margin-top:8px; font-size:0.92rem; color:#555;">
+        当日受付にてお支払いください。
+        <span class="paypay-badge">PayPay 歓迎</span>
+      </p>
+    </div>
+
+    <div class="party-card">
+      <h3>懇親会のご案内</h3>
+      <dl>
+        <dt>日時</dt>
+        <dd>2026年6月27日（土）18:00〜</dd>
+        <dt>会場</dt>
+        <dd>KICHIRI（大宮）</dd>
+        <dt>備考</dt>
+        <dd>参加登録フォームにて懇親会参加の有無もお知らせください。</dd>
+      </dl>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h3 style="color:var(--primary-dark); margin-bottom:12px;">お問い合わせ</h3>
+      <p style="font-size:0.93rem;">
+        ご不明な点は下記事務局までお気軽にご連絡ください。<br>
+        <strong>自治医科大学附属さいたま医療センター 周産期科新生児部門</strong><br>
+        <a href="mailto:nicu.jichis@gmail.com">nicu.jichis@gmail.com</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB6: 一般演題発表者の方へ（準備中） ===== -->
+<div id="presenters" class="tab-content">
+  <div class="container">
+    <div class="preparing-screen">
+      <div class="icon">&#128295;</div>
+      <h2>準備中</h2>
+      <p>一般演題発表者の方へ向けた情報は、近日中に公開予定です。<br>
+         お問い合わせは <a href="mailto:nicu.jichis@gmail.com">nicu.jichis@gmail.com</a> までご連絡ください。</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="org">第20回 埼玉県新生児医療懇話会</div>
+  <div>事務局：自治医科大学附属さいたま医療センター 周産期科新生児部門</div>
+  <div style="margin-top:6px;"><a href="mailto:nicu.jichis@gmail.com">nicu.jichis@gmail.com</a></div>
+  <div style="margin-top:10px; opacity:0.5; font-size:0.78rem;">&copy; 2026 埼玉県新生児医療懇話会世話人会</div>
+</footer>
+
+<script>
+  function switchTab(event, tabId) {
+    // Remove active from all tabs and contents
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+    // Activate clicked
+    event.currentTarget.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+
+    // Scroll to top of content area
+    window.scrollTo({ top: document.querySelector('.tab-nav').offsetTop, behavior: 'smooth' });
+  }
+
+  // URL hash support
+  const hashMap = { '#overview': 0, '#seminar': 1, '#special': 2, '#abstract': 3, '#registration': 4, '#presenters': 5 };
+  const hash = window.location.hash;
+  if (hash && hashMap[hash] !== undefined) {
+    const btns = document.querySelectorAll('.tab-btn');
+    if (btns[hashMap[hash]]) btns[hashMap[hash]].click();
+  }
+</script>
+</body>
+</html>
