@@ -564,7 +564,8 @@
   <button class="tab-btn" onclick="switchTab(event, 'abstract')" role="tab">演題登録</button>
   <button class="tab-btn" onclick="switchTab(event, 'registration')" role="tab">参加登録</button>
   <button class="tab-btn" onclick="switchTab(event, 'party')" role="tab">懇親会</button>
-  <button class="tab-btn preparing" onclick="switchTab(event, 'presenters')" role="tab">一般演題発表者の方へ（準備中）</button>
+  <button class="tab-btn" onclick="switchTab(event, 'organizers')" role="tab">世話人会</button>
+  <button class="tab-btn" onclick="switchTab(event, 'presenters')" role="tab">発表者の方へ</button>
 </nav>
 
 <!-- ===== TAB1: 開催概要 ===== -->
@@ -597,14 +598,20 @@
       </dl>
     </div>
 
-    <h2 class="section-title">タイムスケジュール（予定）</h2>
+    <h2 class="section-title">タイムスケジュール</h2>
     <div class="card" style="padding:0; overflow:hidden;">
       <table class="schedule-table">
-        <tr><th>13:00</th><td>開会・一般演題（予定8演題）</td></tr>
-        <tr><th>〜15:00頃</th><td>共催セミナー①<br>【スイーツセミナー】軟骨無形成症の早期診断と治療介入の意義について</td></tr>
-        <tr><th>〜16:00頃</th><td>セミナー②<br>明日からのケアがちょっと変わる？！家族のホンネ</td></tr>
-        <tr><th>16:05〜16:55</th><td><strong>特別企画</strong>　「見て・語って・持ち帰る NICUケア実践交流ラボ」</td></tr>
-        <tr><th>17:00</th><td>閉会</td></tr>
+        <tr><th>12:15〜12:45</th><td>世話人会（7F 704号室・ハイブリッド開催）</td></tr>
+        <tr><th>12:30〜</th><td>受付開始</td></tr>
+        <tr><th>13:00〜13:05</th><td>開会の挨拶</td></tr>
+        <tr><th>13:05〜13:35</th><td><strong>一般演題　Ns session</strong><br>座長　岩波 悠子（自治医大さいたま医療センター）</td></tr>
+        <tr><th>13:35〜14:25</th><td><strong>一般演題　Dr session / ME session</strong><br>座長　中張 惇子（自治医大さいたま医療センター）</td></tr>
+        <tr><th>14:25〜14:35</th><td>休憩</td></tr>
+        <tr><th>14:35〜15:20</th><td><strong>共催スイーツセミナー</strong><br>軟骨無形成症の早期診断と治療介入の意義について<br>座長　須賀 健一　／　協賛：BioMarin Pharmaceutical Japan 株式会社</td></tr>
+        <tr><th>15:20〜15:30</th><td>休憩・企業展示案内</td></tr>
+        <tr><th>15:30〜16:05</th><td><strong>セミナー</strong>　明日からのケアがちょっと変わる？！家族のホンネ</td></tr>
+        <tr><th>16:05〜17:00</th><td><strong>特別企画</strong>　「見て・語って・持ち帰る NICUケア実践交流ラボ」</td></tr>
+        <tr><th>17:00〜17:05</th><td>閉会の挨拶</td></tr>
         <tr><th>18:00〜</th><td>懇親会　<a href="https://kichiri.jp/kichiri/omiya-west/" target="_blank" rel="noopener">KICHIRI 大宮 WEST</a>（会場近く）</td></tr>
       </table>
     </div>
@@ -849,6 +856,8 @@
         <dd>2026年6月27日（土）18:00〜</dd>
         <dt>会場</dt>
         <dd><a href="https://kichiri.jp/kichiri/omiya-west/" target="_blank" rel="noopener">KICHIRI 大宮 WEST</a></dd>
+        <dt>会費</dt>
+        <dd>医師 7,000円／コメディカル 5,000円（当日徴収）</dd>
         <dt>備考</dt>
         <dd>参加登録フォームにて懇親会参加の有無もお知らせください。</dd>
       </dl>
@@ -892,7 +901,7 @@
         <dt>アクセス</dt>
         <dd>大宮ソニックシティより徒歩圏内</dd>
         <dt>会費</dt>
-        <dd><strong>5,000円</strong>　2時間飲み放題つき 贅沢コース</dd>
+        <dd><strong>医師 7,000円</strong>／コメディカル 5,000円<br><small style="color:#777;">2時間飲み放題つき 贅沢コース・当日徴収</small></dd>
       </dl>
       <div style="margin-top:18px; text-align:center;">
         <a href="https://kichiri.jp/kichiri/omiya-west/" target="_blank" rel="noopener"
@@ -929,14 +938,87 @@
   </div>
 </div>
 
-<!-- ===== TAB7: 一般演題発表者の方へ（準備中） ===== -->
+<!-- ===== TAB: 世話人会 ===== -->
+<div id="organizers" class="tab-content">
+  <div class="container">
+    <h2 class="section-title">世話人会</h2>
+
+    <div class="card">
+      <dl class="info-grid">
+        <dt>日時</dt>
+        <dd>2026年6月27日（土）　12:15 〜 12:45</dd>
+        <dt>会場</dt>
+        <dd>大宮ソニックシティ　<strong>7F 704号室</strong></dd>
+        <dt>開催形式</dt>
+        <dd><strong>ハイブリッド開催</strong>（現地 ＋ オンライン）</dd>
+        <dt>オンライン参加</dt>
+        <dd>Zoomリンクは、世話人の皆さまへ<strong>メールにてご案内</strong>いたします。</dd>
+      </dl>
+      <div class="alert-box" style="margin-top:20px;">
+        現地・オンラインいずれの形でもご参加いただけます。<br>
+        Zoom接続用URLは開催前に事務局より世話人の皆さまへメールでお送りします。お手元に届かない場合は <a href="mailto:nicu.jichis@gmail.com">nicu.jichis@gmail.com</a> までご連絡ください。
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h3 style="color:var(--primary-dark); margin-bottom:12px;">お問い合わせ</h3>
+      <p style="font-size:0.93rem;">
+        <strong>自治医科大学附属さいたま医療センター 周産期科新生児部門</strong><br>
+        <a href="mailto:nicu.jichis@gmail.com">nicu.jichis@gmail.com</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB7: 発表者の方へ ===== -->
 <div id="presenters" class="tab-content">
   <div class="container">
-    <div class="preparing-screen">
-      <div class="icon">&#128295;</div>
-      <h2>準備中</h2>
-      <p>一般演題発表者の方へ向けた情報は、近日中に公開予定です。<br>
-         お問い合わせは <a href="mailto:nicu.jichis@gmail.com">nicu.jichis@gmail.com</a> までご連絡ください。</p>
+    <h2 class="section-title">発表者の方へ</h2>
+
+    <div class="alert-box" style="margin-bottom:24px;">
+      <strong>📤 発表スライドの事前送付のお願い</strong><br>
+      当日の進行を円滑にするため、発表スライドを<strong>事前にメールにてご送付ください</strong>。<br>
+      送付先：<a href="mailto:nicu.jichis@gmail.com">nicu.jichis@gmail.com</a><br>
+      件名に「スライド送付：施設名・演者名」とご記載ください。
+    </div>
+
+    <div class="card">
+      <h3 style="color:var(--primary-dark); margin-bottom:12px;">発表時間</h3>
+      <dl class="info-grid">
+        <dt>一般演題</dt>
+        <dd><strong>発表 6分／討論 3分</strong></dd>
+        <dt>共催スイーツセミナー</dt>
+        <dd>演者 45分</dd>
+      </dl>
+      <p style="margin-top:12px; font-size:0.9rem; color:#555;">時間厳守にご協力をお願いいたします。発表終了1分前と終了時に合図いたします。</p>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h3 style="color:var(--primary-dark); margin-bottom:12px;">発表形式</h3>
+      <ul style="padding-left:1.2em; font-size:0.93rem; line-height:1.9;">
+        <li>PCによるスライド発表（PowerPoint 使用）</li>
+        <li>スライドの縦横比は <strong>16：9</strong> を推奨します。</li>
+        <li>会場PC（Windows / PowerPoint）をご用意します。事前送付いただいたスライドを会場PCにて投影します。</li>
+        <li>動画・特殊フォントを使用される場合は、ご自身のノートPCをご持参いただくことを推奨します（HDMI接続）。その場合は発表30分前までに会場へお越しください。</li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h3 style="color:var(--primary-dark); margin-bottom:12px;">利益相反（COI）について</h3>
+      <ul style="padding-left:1.2em; font-size:0.93rem; line-height:1.9;">
+        <li>発表スライドの最初に、利益相反状態の有無を開示してください。</li>
+        <li>症例報告を含む発表は、患者のプライバシー保護に十分ご配慮ください。</li>
+        <li>施設の倫理委員会・院内承認を得たうえで発表してください。</li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h3 style="color:var(--primary-dark); margin-bottom:12px;">お問い合わせ</h3>
+      <p style="font-size:0.93rem;">
+        ご不明な点は下記事務局までお気軽にご連絡ください。<br>
+        <strong>自治医科大学附属さいたま医療センター 周産期科新生児部門</strong><br>
+        <a href="mailto:nicu.jichis@gmail.com">nicu.jichis@gmail.com</a>
+      </p>
     </div>
   </div>
 </div>
@@ -964,7 +1046,7 @@
   }
 
   // URL hash support
-  const hashMap = { '#overview': 0, '#seminar': 1, '#special': 2, '#abstract': 3, '#registration': 4, '#party': 5, '#presenters': 6 };
+  const hashMap = { '#overview': 0, '#seminar': 1, '#special': 2, '#abstract': 3, '#registration': 4, '#party': 5, '#organizers': 6, '#presenters': 7 };
   const hash = window.location.hash;
   if (hash && hashMap[hash] !== undefined) {
     const btns = document.querySelectorAll('.tab-btn');
